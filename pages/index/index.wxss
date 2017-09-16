@@ -1,21 +1,62 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.scroll {
+  flex-wrap: wrap;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.nav {
+  position: relative;
+  float: left;
+  width: 50%;
+  margin: 0 0 12rpx;
+  padding: 12rpx;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.96);
 }
-
-.userinfo-nickname {
+.nav:nth-of-type(even) {
+  float: right;
+}
+.animated {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 24px;
+  height: 14px;
+  background-repeat: no-repeat;
+  background-size: 22px 70px;
+  background-image: url('https://cdn.dribbble.com/assets/animated-gif-sprite-2x-6c27dabe5db5a774ab24008b91faaa1c7d71a0ce983e8c1e01be595fccaaa2d5.png')
+}
+image {
+  width: 100%;
+  max-height: 240rpx;
+}
+ul.tools {
+  line-height: 12px;
+}
+ul.tools li {
+  float: right;
+  margin: 6rpx 0 0 16rpx;
+  width: auto;
   color: #aaa;
 }
+ul.tools li span {
+  display: block;
+  height: 28rpx;
+  font-size: 12px;
+  line-height: 12px;
+  margin-left: 0;
+  border-left: none;
+  padding-left: 18px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-image: url('https://cdn.dribbble.com/assets/icon-views-sm-2x-b865539f89cd26e0bda8c7e843973f829139a277d746a13795f21a273c51fc89.png');
+  background-size: 14px 10px;
+}
 
-.usermotto {
-  margin-top: 200px;
+ul.tools li.cmnt span {
+  background-image: url('https://cdn.dribbble.com/assets/icon-comments-2x-efb230001b5f5ce4dc38f82183a3a534d34bfc0ce40c5780b14e45b31cf850e6.png');
+  background-size: 12px 59px;
+}
+
+ul.tools li.fav span {
+  background-image: url('https://cdn.dribbble.com/assets/icon-hearts-2x-28e929b58a8150518d337112b531d797d130df4b2dad41f125767af250d66199.png');
+  background-size: 12px 45px;
 }

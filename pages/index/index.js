@@ -4,41 +4,45 @@ const app = getApp()
 const api = require('../../utils/api')
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
     list: [],
-    loading: true
+    loading: true,
+    upLoading: true,
+    width: 0,
+    height: 0,
+    params: {
+      page: 1,
+      per_page: 12
+    }
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  pullUpLoad: function() {
+    console.log(12321)
+  },
+  handleFav: function(event) {
+    console.log(12312)
+  },
+  handleAnimated: function() {
+    console.log('handleAnimated')
+  },
+  onShow: function() {
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          width: res.windowWidth,
+          height: res.windowHeight
+        })
+      }
     })
   },
   onLoad: function () {
-    app.fetchApi(api.serialize('shots'), (err, res) => {
+    app.fetchApi(api.serialize('shots', this.data.params), (err, res) => {
       console.log(res)
       this.setData({
         list: res,
-        loading: false
+        loading: false,
+        upLoading: false
       })
     }) 
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    }
   },
   getUserInfo: function(e) {
     this.setData({

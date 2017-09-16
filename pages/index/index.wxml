@@ -1,16 +1,16 @@
 <!--index.wxml-->
 <loading wx:if="{{loading}}">
-  加载中...
+  正在加载
 </loading>
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{hasUserInfo}}">
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-    <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view>
+<scroll-view class="container scroll" style="height: {{height}}px; width: {{width}}px;" scroll-y="true" bindscrolltolower="pullUpLoad">
+  <navigator wx:for="{{list}}" wx:key="id" class="nav" url="../detail/detail?id={{item.id}}" style="width:{{(width - 6)/2}}px;" hover-class="none">
+    <div class="animated" catchtap="handleAnimated" wx:if="{{item.animated}}"></div>
+    <image src="{{item.images.normal}}" lazy-load="true"></image>
+    <ul class="tools">
+      <li class="fav" catchtap="handleFav"><span>{{item.likes_count}}</span></li>
+      <li class="cmnt" catchtap="handleFav"><span>{{item.comments_count}}</span></li>
+      <li class="views" catchtap="handleFav"><span>{{item.views_count}}</span></li>
+    </ul>
+  </navigator>
+  <view class="loading" wx:if="{{upLoading && list.length > 0}}">正在载入更多...</view> 
+</scroll-view>
